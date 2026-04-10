@@ -177,9 +177,6 @@ h1 {
 .link:nth-child(3) {
   animation-delay: 0.2s;
 }
-.link:nth-child(4) {
-  animation-delay: 0.26s;
-}
 
 @keyframes link-in {
   from {
@@ -228,6 +225,198 @@ h1 {
   border-color: rgba(255, 255, 255, 0.35);
   box-shadow: 0 12px 32px rgba(143, 74, 80, 0.35);
   color: #fff;
+}
+
+.link--button {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  font: inherit;
+  font-weight: 600;
+  text-align: center;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.link--button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* MailBridge contact modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal[hidden] {
+  display: none !important;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(42, 33, 28, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+.modal__panel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  max-height: min(90vh, 640px);
+  overflow: auto;
+  padding: 1.5rem 1.35rem 1.35rem;
+  background: var(--surface);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(42, 33, 28, 0.18);
+  text-align: left;
+  animation: rise 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.modal__close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__close:hover {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.modal__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 2rem 0.35rem 0;
+  color: var(--text);
+}
+
+.modal__hint {
+  margin: 0 0 1.1rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.contact-form__label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.contact-form__input,
+.contact-form__textarea {
+  width: 100%;
+  margin-bottom: 0.85rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid rgba(90, 62, 54, 0.18);
+  border-radius: 10px;
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.contact-form__input:focus,
+.contact-form__textarea:focus {
+  outline: none;
+  border-color: rgba(168, 92, 98, 0.55);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.contact-form__textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.45;
+}
+
+.contact-form__hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact-form__status {
+  min-height: 1.35rem;
+  margin: 0 0 0.75rem;
+  font-size: 0.88rem;
+  color: var(--accent);
+}
+
+.contact-form__status--error {
+  color: #9a3d3d;
+}
+
+.contact-form__actions {
+  display: flex;
+  gap: 0.65rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.contact-form__btn {
+  padding: 0.65rem 1.15rem;
+  border-radius: 12px;
+  font-family: var(--font-ui);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.contact-form__btn--ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: rgba(90, 62, 54, 0.15);
+}
+
+.contact-form__btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--text);
+}
+
+.contact-form__btn--primary {
+  background: linear-gradient(135deg, #a85c62 0%, #8f4a50 100%);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.contact-form__btn--primary:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.contact-form__btn--primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
 .footer {
