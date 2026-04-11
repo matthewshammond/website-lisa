@@ -62,10 +62,21 @@
     }
   });
 
+  function formDataToUrlEncoded(fd) {
+    var params = new URLSearchParams();
+    fd.forEach(function (value, key) {
+      params.append(key, value);
+    });
+    return params;
+  }
+
   function postForm(fd) {
     fetch(cfg.endpoint, {
       method: "POST",
-      body: fd,
+      body: formDataToUrlEncoded(fd),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
       mode: "cors",
       credentials: "omit",
     })
