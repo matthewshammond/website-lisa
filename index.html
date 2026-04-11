@@ -24,6 +24,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/styles.css" />
+    <script
+      src="https://www.google.com/recaptcha/api.js?render=6LeG2hUrAAAAAMUD3b8o0OURuL3CIola4CC_6qtU"
+      defer
+    ></script>
     <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png" />
@@ -128,6 +132,7 @@
           <div class="contact-form__hp" aria-hidden="true">
             <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off" title="" />
           </div>
+          <p class="recaptcha-text">This site is protected by reCAPTCHA.</p>
           <p class="contact-form__status" id="contact-status" role="status" aria-live="polite"></p>
           <div class="contact-form__actions">
             <button type="button" class="contact-form__btn contact-form__btn--ghost" id="contact-cancel">Cancel</button>
@@ -137,10 +142,11 @@
       </div>
     </div>
 
-    <!-- MailBridge: set endpoint to your public API. On the server, remove the entire `captcha:` block under this form in config.yml if you are not using reCAPTCHA (otherwise submissions return 400). -->
+    <!-- MailBridge + reCAPTCHA v3: add lisahammond.com to the same reCAPTCHA site in Google admin as matthammond.com, or set a dedicated site key below + in the script src above. -->
     <script>
       window.__MAILBRIDGE__ = {
         endpoint: "https://form.lisahammond.com/api/v1/form/489YOQiRdkale82910dfja7892AIoLk1",
+        recaptchaSiteKey: "6LeG2hUrAAAAAMUD3b8o0OURuL3CIola4CC_6qtU",
       };
     </script>
     <script src="/contact.js" defer></script>

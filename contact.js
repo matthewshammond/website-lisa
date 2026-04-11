@@ -62,17 +62,7 @@
     }
   });
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    if (!cfg || !cfg.endpoint) {
-      showStatus("Contact form is not configured.", true);
-      return;
-    }
-
-    var fd = new FormData(form);
-    submitBtn.disabled = true;
-    showStatus("Sending…", false);
-
+  function postForm(fd) {
     fetch(cfg.endpoint, {
       method: "POST",
       body: fd,
@@ -117,5 +107,42 @@
       .finally(function () {
         submitBtn.disabled = false;
       });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!cfg || !cfg.endpoint) {
+      showStatus("Contact form is not configured.", true);
+      return;
+    }
+    if (!cfg.recaptchaSiteKey) {
+      showStatus("reCAPTCHA is not configured.", true);
+      return;
+    }
+    if (typeof grecaptcha === "undefined" || !grecaptcha.execute) {
+      showStatus(
+        "Security check did not load. Refresh the page and try again.",
+        true
+      );
+      return;
+    }
+
+    submitBtn.disabled = true;
+    showStatus("Verifying…", false);
+
+    grecaptcha.ready(function () {
+      grecaptcha
+        .execute(cfg.recaptchaSiteKey, { action: "submit" })
+        .then(function (token) {
+          var fd = new FormData(form);
+          fd.append("captcha_token", token);
+          showStatus("Sending…", false);
+          postForm(fd);
+        })
+        .catch(function () {
+          showStatus("Could not verify. Try again in a moment.", true);
+          submitBtn.disabled = false;
+        });
+    });
   });
 })();
